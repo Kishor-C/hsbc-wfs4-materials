@@ -1,0 +1,22 @@
+interface UserDao { 
+	public void save(User user) throws UserCreationException;
+	public User[] findAll();
+	public User find(int id) throws UserNotFoundException; 
+} 
+public class UserDaoArrayImpl implements UserDao {
+	private static User[] userArray = new User[3];
+	...
+	public void save(User user) throw UserCreationException { 
+		...
+		# once the array size exceeds throw UserCreationException
+		# Note: You must handle AIOBE & throw UCE in catch
+		...
+	} 
+	public User find(int id) throws UserNotFoundException { 
+		...
+		# search the user by id if not found
+		# throw UserNotFoundException instead of returning null
+	} 
+}
+#### ViewController class must handle the above exceptions & print in the
+		System.err.println(e.getMessage())
