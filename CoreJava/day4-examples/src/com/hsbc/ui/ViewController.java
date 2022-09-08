@@ -11,7 +11,7 @@ import com.hsbc.utility.ObjectFactory;
 public class ViewController {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter the storage 1: Array 2: Others");
+		System.out.println("Enter the storage 1: Array 2: File 3: Others");
 		int input = scan.nextInt();
 		UserDao dao = ObjectFactory.getInstance(input);
 		int options = 0;
@@ -32,10 +32,15 @@ public class ViewController {
 				
 				break;
 			case 2: 
-				User[] users = dao.findAll();
-				for(User item : users) {
-					System.out.println(item);
-					System.out.println("______________________________");
+				/* findAll raises exception if the file is not present and user tries to fetch data*/ 
+				try {
+					User[] users = dao.findAll();
+					for(User item : users) {
+						System.out.println(item);
+						System.out.println("______________________________");
+					}
+				} catch(Exception e) {
+					System.err.println(e);
 				}
 				break;
 			case 3: 
@@ -47,6 +52,8 @@ public class ViewController {
 				} catch (UserNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch(Exception e) {
+					System.err.println(e);
 				}
 				
 				break;
