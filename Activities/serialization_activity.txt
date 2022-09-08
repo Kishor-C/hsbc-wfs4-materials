@@ -1,0 +1,21 @@
+ViewController
+	1: Array 2: File  3: Others
+--- On '2' the factory class must return UserDaaArrayFileImpl
+---- menu options will be same i.e., 1: Store 2: Find All 3: Find by id
+					4: Exit
+public interface UserDao { 3 methods }
+
+public class UserDaoArrayImpl implements UserDao { storing in array}
+
+public class UserDaoArrayFileImpl implements UserDao { 
+	store user array in file 
+	// implement 3 methods of UserDao 
+	save(User user) // add user in the array & serialize array
+			// throw UCE if array limit reaced
+
+	findAll() // deserialize the array from file and return
+
+	find(int id) // call findAll & search the user based on id
+				throw UNFE or return user
+
+} 

@@ -2,6 +2,8 @@ package com.hsbc.ui;
 
 import java.util.Scanner;
 
+import com.hsbc.exceptions.UserCreationException;
+import com.hsbc.exceptions.UserNotFoundException;
 import com.hsbc.model.beans.User;
 import com.hsbc.model.dao.UserDao;
 import com.hsbc.utility.ObjectFactory;
@@ -20,8 +22,14 @@ public class ViewController {
 			case 1: 
 				System.out.println("Enter id, name and phone separated by space");
 				User user = new User(scan.nextInt(), scan.next(), scan.nextLong());
-				dao.save(user);
-				System.out.println("________User Saved_____");
+				try {
+					dao.save(user);
+					System.out.println("________User Saved_____");
+				} catch (UserCreationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				break;
 			case 2: 
 				User[] users = dao.findAll();
@@ -33,14 +41,17 @@ public class ViewController {
 			case 3: 
 				System.out.println("Enter id to search");
 				int id = scan.nextInt();
-				User u = dao.findUser(id);
-				if(u != null) 
-					System.out.println(u); // Object.toString()
-				else
-					System.err.println("User with an id "+id+" not found");
+				try {
+					User u = dao.findUser(id);
+					System.out.println(u);
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				break;
 			}
-		} while(options != 3);
+		} while(options != 4);
 		scan.close();
 	}
 }
