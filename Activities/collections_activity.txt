@@ -1,0 +1,37 @@
+- Use layered architecutre, factory pattern, exception handling, collection framework, interface
+based approach, view controller, model, beans, package structure wherever necessary
+
+# Beans - Create an Employee class with id: int, name: String, salary: double & dob: LocalDate
+
+# Interface - EmployeeStorage with following methods
+	// save accepts the initialized employee and returns id of the employee to the caller
+	1. public int save(Employee employee) throws EmployeeAlreadyExistsException
+	//findAll returns all the employees in array format, it is possible to convert
+	// collection to array 
+	2. public Employee[] findAll(); 
+	// find returns Employee if id is found else throws exception
+	3. public Employee find(int id) throws EmployeeNotFoundException
+	// update accepts id & dob and updates the employee and returns the updated employee
+	// else throws exception if id is not present
+	4. public Employee update(int id, LocalDate newDob) throws EmployeeNotFoundException
+	// delete must accept id & delete the employee else throws exception
+	5. public void delete(int id) throws EmployeeNotFoundException
+
+# Create implementations for the same interface using List, TreeSet
+	1. class EmployeeStorageListImpl implements EmployeeStorage { 
+		// maintain employees in the ArrayList<Employee>
+	} 
+	2. class EmployeeStorageSortedImpl implements EmployeeStorage { 
+		// maintain employes in the TreeSet<Employee> that sorts employee based on id
+	} 
+# View Controller must ask option where to maintain the employee 
+	1: List
+	2: TreeSet
+	3: Others
+	Once you select the option 'Factory Pattern' must return the right implementation & 
+	store in the EmployeeStorage interface
+	- Later show the menu in a loop until you enter a number that exits the program, 
+	options are:-
+	1. Store	2: Find All	3: Find By Id	4: Update Dob by Id 	5: Delete by id
+	6: Exit
+	
