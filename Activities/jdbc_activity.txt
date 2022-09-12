@@ -1,0 +1,23 @@
+com.hsbc.model.dao
+--------------------
+interface EmployeeDao
+	public int save(Employee emp) throws EmployeeCreationException
+	public List<Employee> fetchEmployees();
+	public Employee find(int id) throws EmployeeNotFoundException;
+
+com.hsbc.model.dao
+--------------------
+public class EmployeeDayJdbcImpl implements EmployeeDao { 
+	// ensure there's no System.out.print & Scanner in DAO
+} 
+
+// write a separate class with a method that returns Connection 
+so that in each method you don't repeat Class.forName() & 
+Connection statement
+
+com.hsbc.model.utility
+-------------------------
+public class DBConnection { ... public static Connection connect() {..} }
+
+com.hsbc.ui >> ViewController will ask 4 options in a loop >> get the 
+		instance of EmployeeDao through Factory
