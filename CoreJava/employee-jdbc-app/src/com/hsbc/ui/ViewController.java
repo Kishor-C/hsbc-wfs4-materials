@@ -42,6 +42,9 @@ public class ViewController {
 				List<Employee> list = dao.fetchEmployees();
 				for(Employee emp : list) {
 					System.out.println(emp);
+					if(emp.getAddress() != null) {
+						System.out.println(emp.getAddress());
+					}
 					System.out.println("____________________________________");
 				}
 				break;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Ajax example</h1>
+	<button onclick = "fetch()">Load Data</button>
+	<div id = "x"></div>
+	
+	<script type = "text/javascript">
+	function fetch() {
+	// initialize XMLHttpRequest object to send request to server
+		let xml = new XMLHttpRequest();
+		let ele = document.getElementById('x');
+		xml.open("GET", 
+			"http://localhost:8080/day10-json-data/simple.json", true);
+		xml.send();
+		xml.onreadystatechange = function() { 
+			// readyState has camel case, if response is ready 
+			if(xml.readyState == 4) {
+				let data = xml.responseText;
+				ele.innerHTML = data;
+				//converting JSON to Javascript
+				let obj = JSON.parse(data);
+				ele.innerHTML='Hello! '+obj.name+', Gender: '+obj.gender;
+			}
+		}
+	}
+	</script>
+</body>
+</html>

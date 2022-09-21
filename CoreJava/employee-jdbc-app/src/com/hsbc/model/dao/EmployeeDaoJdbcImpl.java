@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.hsbc.exceptions.EmployeeCreationException;
 import com.hsbc.exceptions.EmployeeNotFoundException;
+import com.hsbc.model.beans.Address;
 import com.hsbc.model.beans.Employee;
 import com.hsbc.model.dao.util.DbUtility;
 
@@ -17,6 +18,9 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
 
 	// save method receives name and dob, id will be auto-generated
 	@Override
+	// it must accept employee object with an embedded address object
+	// store employee information to employee table & use its auto-generated id
+	// to store in address table foreign key column
 	public int save(Employee employee) throws EmployeeCreationException {
 		// return 1 if save is success else generate exception
 		int status = 0;
@@ -45,7 +49,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
 		List<Employee> list = new ArrayList<Employee>();
 		try {
 			Connection connection = DbUtility.establishConnection();
-			String query = "select * from employee";
+			String query = "select id, name, dob, state, city, pin, emp_ref "
+					+ "from employee left join address on id = emp_ref";
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			// loop and navigate over each record, on each record create employee object
@@ -55,11 +60,19 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
 				employee.setId(result.getInt("ID")); // initializes id of employee
 				employee.setName(result.getString("NAME")); // initializes name of employee
 				employee.setDob(result.getDate("DOB").toLocalDate()); // initializes dob
+				int empRef = result.getInt("emp_ref");
+				Address address = null;
+				if(empRef != 0) {
+					address = new Address();
+					address.setState(result.getString("state"));
+					address.setCity(result.getString("city"));
+					address.setPin(result.getInt("pin"));
+					address.setEmp_ref(result.getInt("emp_ref"));
+				}
+				employee.setAddress(address);
 				list.add(employee);
 			}
-			result.close();
-			statement.close();
-			connection.close();
+			result.close(); statement.close(); connection.close();
 		} catch(ClassNotFoundException e) { 
 			e.printStackTrace();
 		}catch(SQLException e) {

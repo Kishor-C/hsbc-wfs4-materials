@@ -7,6 +7,9 @@ public class Employee {
 	private String name;
 	private LocalDate dob;
 	
+	private Address address; // generate setters & getters for address
+	
+	
 	// constructor to initialize id, name and dob
 	public Employee(int id, String name, LocalDate dob) {
 		super();
@@ -60,6 +63,12 @@ public class Employee {
 	}
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<img src = "pictures/green.jpg" id = "main" width = "300" height = "300">
+	
+	<div onclick = "change(event)">
+		<img src = "pictures/green.jpg" width = "100" height = "100">
+		<img src = "pictures/leaves.jpg" width = "100" height = "100">
+		<img src = "pictures/marbles.jpg" width = "100" height = "100">
+		<img src = "pictures/nature.jpg" width = "100" height = "100">
+	</div>
+	<script type = "text/javascript">
+		function change(e) {
+			// access main image using name main
+			let e1 = document.getElementById('main');
+			let e2 = e.target; // sometimes the target could be DIV other than IMG
+			if(e2.tagName == 'IMG') { 
+				e1.src = e2.src;
+			}
+		}
+	</script>
+</body>
+</html>

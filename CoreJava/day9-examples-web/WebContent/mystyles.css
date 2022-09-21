@@ -1,0 +1,19 @@
+h1 { 
+	color : green; 
+	background-color: yellow; 
+	text-align: center; 
+	padding: 5px;
+	border: black 2px solid;
+}
+h2 { color : red; text-align: center; border: blue 2px dotted; border-radius: 25px;}
+h3 { color : blue; text-align: center; border: red 2px dashed;}
+h4 { color : brown; text-align: center; border: violet 3px double;}
+h5 { color : violet; }
+h6 { color : maroon; }
+
+.danger {
+	color : red;
+}
+.success { 
+	color: green;
+}

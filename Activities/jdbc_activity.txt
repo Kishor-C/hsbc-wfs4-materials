@@ -17,7 +17,7 @@ Connection statement
 
 com.hsbc.model.utility
 -------------------------
-public class DBConnection { ... public static Connection connect() {..} }
+public class DBConnection { public static Connection connect() {...}  }
 
 com.hsbc.ui >> ViewController will ask 4 options in a loop >> get the 
 		instance of EmployeeDao through Factory
