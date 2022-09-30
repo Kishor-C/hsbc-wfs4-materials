@@ -1,0 +1,23 @@
+<div>
+    <h2>Databinding Demo</h2>
+    <h3>Event Binding</h3>
+    Enter Name: <input 
+        type = "text" #tf1 (input)="m1(tf1.value)"> <br />
+    Enter Age: <input type = "number" #tf2> <br />
+<button [disabled] = "status" (click)="handleClick(tf1.value, +tf2.value)">
+        ClickHere
+    </button> 
+    <button [disabled] = "status">MyButton</button>
+    <h3>Username: {{username}}, Age: {{age}}</h3>
+    <h2>User Form:-</h2>
+    <form #userForm = "ngForm" 
+        (ngSubmit) = "handleSubmit(userForm.value)">
+    Name: <input type = "text" name = "un" ngModel>
+        <br />
+    Age: <input type = "number" name = "age" ngModel>
+        <br />
+    Phone: <input type = "number" name = "phone" 
+        ngModel> <br />
+    <input type = "submit" value = "Submit">
+    </form>
+</div>

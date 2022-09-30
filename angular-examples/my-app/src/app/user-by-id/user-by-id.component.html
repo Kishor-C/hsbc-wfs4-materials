@@ -1,0 +1,19 @@
+<div>
+    <h2>Fetch User By Id</h2>
+    <hr />
+    <label>
+        Enter User Id
+        <input type = "number" #tf >
+    </label>
+    <button (click) = "handleClick(+tf.value)">Search</button>
+    <!-- use *ngIf so that element is displayed only if its 
+    initialized -->
+    <div *ngIf = "user" style = 'color: green'>
+        {{user | json}}
+        <p>Hello {{user.name}}, your phone no is {{user.phone}}</p>
+    </div>
+    <div *ngIf = "error" style = 'color: red'>
+        {{error.error | json}}
+        <p>{{error.error.error}}</p>
+    </div>
+</div>

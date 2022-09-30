@@ -1,0 +1,17 @@
+<div>
+    <h2>User Form</h2>
+    <form #userForm = "ngForm"
+         (ngSubmit) = "handleSubmit(userForm.value)">
+        Enter id <input type = "number" name = "userId" ngModel>
+        <br />
+        Enter name <input type = "text" name = "name" ngModel>
+        <br />
+        Enter phone <input type = "number" name = "phone" ngModel>
+        <br />
+        <input type = "submit" value = "Save">
+    </form>
+    <div>
+        <p *ngIf = "msg" style = 'color:blue'>{{msg.message}}</p>
+        <p *ngIf = "err" style = 'color:red'>{{err}}</p>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div style="margin: 25px">
+    <h2>List of all users:-</h2>
+    <button (click) = "refresh()">Refresh</button>
+    <table border = "1">
+        <tr>
+            <th>USER ID</th><th>USER NAME</th><th>PHONE_NUMBER</th>
+        </tr>
+        <tr *ngFor = "let user of users">
+            <td>{{user.userId}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.phone}}</td>
+        </tr>
+    </table>
+</div>

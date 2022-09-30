@@ -1,0 +1,7 @@
+<div>
+    <h2>Product List:-</h2>
+    <app-product-item [item] = "name"></app-product-item>
+    <div *ngFor = "let i of names">
+        <app-product-item [item] = "i"></app-product-item>
+    </div>
+</div>
